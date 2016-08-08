@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Unified Logviewer Test</title>
+  <style>
+  html, body { padding: 0; margin: 0; background-color: lightblue }
+  iframe { width: 75%; height: 75%; border: none; position: absolute; left: 12.5%; top: 12.5%; }
+  </style>
+</head>
+<body>
+  <iframe id="logviewer" src="https://taskcluster.github.io/unified-logviewer/?url=https://public-artifacts.taskcluster.net/5qB6Zqc0Tw2_wkKwHgGNGQ/0/public/logs/live_backing.log"></iframe>
+  <script>
+    // const URL = 'https://public-artifacts.taskcluster.net/5qB6Zqc0Tw2_wkKwHgGNGQ/0/public/logs/live_backing.log'; // small
+    // const URL = 'https://public-artifacts.taskcluster.net/CNXl4mMTTNm0oWzqaG5pSg/0/public/logs/live_backing.log'; // large
+    // const URL = 'https://queue.taskcluster.net/v1/task/B8yyH1HORxKkQ9p1Sh0CFA/runs/0/artifacts/public/logs/live_backing.log'; // mega
+    // const URL = 'https://archive.mozilla.org/pub/firefox/tinderbox-builds/mozilla-inbound-linux/1470406893/mozilla-inbound-linux-bm74-build1-build1977.txt.gz'; // treeherder
+
+    const logviewer = document.getElementById('logviewer').contentWindow;
+
+    setTimeout(() => logviewer.postMessage({ highlightStart: 5, highlightEnd: 10 }, '*'), 3000);
+    setTimeout(() => logviewer.postMessage({ highlightStart: 15, highlightEnd: 15 }, '*'), 6000);
+    setTimeout(() => logviewer.postMessage({ highlightStart: null, highlightEnd: null }, '*'), 9000);
+  </script>
+</body>
